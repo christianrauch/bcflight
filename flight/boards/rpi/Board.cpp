@@ -39,7 +39,6 @@ extern "C" {
 #include <interface/vmcs_host/vc_tvservice.h>
 #include <interface/vmcs_host/vc_cecservice.h>
 #include <interface/vmcs_host/vcgencmd.h>
-#include <interface/vchiq_arm/vchiq_if.h>
 };
 
 // #include <wiringPi.h>
@@ -52,8 +51,8 @@ extern "C" {
 #include "DShotDriver.h"
 #include "Debug.h"
 
-extern "C" void bcm_host_init( void );
-extern "C" void bcm_host_deinit( void );
+// extern "C" void bcm_host_init( void );
+// extern "C" void bcm_host_deinit( void );
 // extern "C" void OMX_Init();
 
 uint64_t Board::mTicksBase = 0;
@@ -77,7 +76,7 @@ VCHI_CONNECTION_T* Board::global_connection = nullptr;
 
 Board::Board( Main* main )
 {
-	bcm_host_init();
+	// bcm_host_init();
 #ifdef CAMERA
 	// OMX_Init();
 #endif
@@ -549,41 +548,6 @@ uint64_t Board::WaitTick( uint64_t ticks_p_second, uint64_t lastTick, int64_t sl
 	}
 
 	return GetTicks();
-}
-
-
-void Board::VCOSInit()
-{
-	VCHIQ_INSTANCE_T vchiq_instance;
-	int success = -1;
-	char response[ 128 ];
-
-	vcos_init();
-
-	if ( vchiq_initialise( &vchiq_instance ) != VCHIQ_SUCCESS ) {
-		gDebug() << "* Failed to open vchiq instance";
-		exit(-1);
-	}
-
-	gDebug() << "vchi_initialise";
-	success = vchi_initialise( &global_initialise_instance );
-	vcos_assert(success == 0);
-	vchiq_instance = (VCHIQ_INSTANCE_T)global_initialise_instance;
-
-	global_connection = vchi_create_connection( single_get_func_table(), vchi_mphi_message_driver_func_table() );
-
-	gDebug() << "vchi_connect";
-	vchi_connect( &global_connection, 1, global_initialise_instance );
-
-	vc_vchi_gencmd_init( global_initialise_instance, &global_connection, 1 );
-	vc_vchi_dispmanx_init( global_initialise_instance, &global_connection, 1 );
-	vc_vchi_tv_init( global_initialise_instance, &global_connection, 1 );
-	vc_vchi_cec_init( global_initialise_instance, &global_connection, 1 );
-
-	if ( success == 0 ) {
-		success = vc_gencmd( response, sizeof(response), "set_vll_dir /sd/vlls" );
-		vcos_assert( success == 0 );
-	}
 }
 
 

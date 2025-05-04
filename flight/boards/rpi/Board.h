@@ -92,7 +92,7 @@ private:
 
 	static void AtExit();
 
-	static void VCOSInit();
+	// static void VCOSInit();
 	static VCHI_INSTANCE_T global_initialise_instance;
 	static VCHI_CONNECTION_T* global_connection;
 
