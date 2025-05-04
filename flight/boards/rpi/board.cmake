@@ -28,7 +28,7 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wl,--unresolved-symbols=ignore-in-shared-li
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CMAKE_C_FLAGS} -Wl,--unresolved-symbols=ignore-in-shared-libs -I/opt/vc/include/ -I/opt/vc/include/interface/vmcs_host -I/opt/vc/include/interface/vmcs_host/khronos -I/opt/vc/include/interface/vmcs_host/khronos -I/opt/vc/include/interface/khronos/include -I/opt/vc/include/interface/vcos/pthreads -I/opt/vc/include/interface/vmcs_host/linux -L/opt/vc/lib/ -Wl,-rpath=/opt/vc/lib")
 set(CMAKE_LD_FLAGS "${CMAKE_LD_FLAGS} -Wl,--unresolved-symbols=ignore-in-shared-libs -L/opt/vc/lib/ -Wl,-rpath=/opt/vc/lib")
 set(CMAKE_LINKER_FLAGS "${CMAKE_LD_FLAGS}")
-set( BOARD_LIBS ${BOARD_LIBS} -lpigpio -lbcm_host -lvcos -lvchiq_arm -lrt -lpthread -ldl -lz -ldrm ) #  -lpigpio
+set( BOARD_LIBS ${BOARD_LIBS} -lbcm_host -lvcos -lvchiq_arm -lrt -lpthread -ldl -lz -ldrm ) #  -lpigpio
 # set( BOARD_LIBS ${BOARD_LIBS} -lavformat -lavcodec -lavutil )
 
 if ( BUILD_audio )

@@ -43,7 +43,7 @@ extern "C" {
 };
 
 // #include <wiringPi.h>
-#include <pigpio.h>
+// #include <pigpio.h>
 #include <fstream>
 #include <Main.h>
 #include "Board.h"
@@ -86,7 +86,7 @@ Board::Board( Main* main )
 
 	// wiringPiSetup();
 	// wiringPiSetupGpio();
-	gpioInitialise();
+	// gpioInitialise();
 
 	system( "modprobe i2c-dev" );
 	system( "mount -o remount,rw /var" );

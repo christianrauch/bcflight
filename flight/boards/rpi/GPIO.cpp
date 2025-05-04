@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 **/
 
-#include <pigpio.h>
+// #include <pigpio.h>
 // #include <wiringPi.h>
 #include <unistd.h>
 #include <sys/poll.h>
@@ -32,7 +32,7 @@ map< int, GPIO::ISR* > GPIO::mThreads;
 
 void GPIO::setMode( int pin, GPIO::Mode mode )
 {
-	gpioSetMode( pin, mode );
+	// gpioSetMode( pin, mode );
 	// if ( mode == Output ) {
 	// 	gpioSetMode( pin, PI_OUTPUT );
 	// } else {
@@ -43,7 +43,7 @@ void GPIO::setMode( int pin, GPIO::Mode mode )
 
 void GPIO::setPUD( int pin, PUDMode mode )
 {
-	gpioSetPullUpDown( pin, mode );
+	// gpioSetPullUpDown( pin, mode );
 }
 
 
@@ -57,13 +57,13 @@ void GPIO::setPWM( int pin, int initialValue, int pwmRange )
 
 void GPIO::Write( int pin, bool en )
 {
-	gpioWrite( pin, en );
+	// gpioWrite( pin, en );
 }
 
 
 bool GPIO::Read( int pin )
 {
-	return gpioRead( pin );
+	// return gpioRead( pin );
 }
 
 
